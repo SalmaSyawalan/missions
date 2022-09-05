@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
+        <title>Solar System</title>
+        <style>
+            /* @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap'); */
+            @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+            /* @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap'); */
+
+            body{
+                /* background: linear-gradient(black, darkblue); */
+                background: linear-gradient(black, rgb(46, 31, 82));
+                margin: 0;
+                padding: 0;
+                height: 100vmin;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .title{
+                z-index: 100;
+                position: absolute;
+                top: 5vmin;
+                right: 10vmin;
+                /* font-family: 'Major Mono Display', monospace; */
+                font-family: 'Space Mono', monospace;
+                /* font-family: 'Ubuntu', sans-serif; */
+            }
+
+            /* .title h1{
+                background: linear-gradient(80deg, transparent, 10%, rgb(154, 141, 168), rgb(154, 141, 168), transparent);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                letter-spacing: 1rem;
+                font-size: 4rem;
+            } */
+
+            .animate-character{
+                /* text-transform: uppercase; */
+                background-image: linear-gradient(
+                    -225deg,
+                    #6d4477 0%,
+                    #342742 29%,
+                    #ffe1eb 67%,
+                    #6d4477 100%
+                );
+                background-size: auto auto;
+                background-clip: border-box;
+                background-size: 200% auto;
+                color: #fff;
+                background-clip: text;
+                text-fill-color: transparent;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: textclip 2s linear infinite;
+                display: inline-block;
+                font-size: 4rem;
+                letter-spacing: 1rem;
+            }
+
+            @keyframes textclip {
+                to {
+                    background-position: 200% center;
+                }
+            }
+
+            .bg{
+                /* background: url(starry-night-sky.jpg) repeat; */
+                opacity: 0.2;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: auto;
+                z-index: -1;
+            }
+
+            .solarsystem{
+                margin: 0;
+                padding: 0;
+                height: 100vmin;
+                /* width:100vmin; */
+                transform: translateX(-100vmin);
+                display: flex;
+            }
+
+            .object{
+                border-radius: 50%;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transform: translateY(50vmin);
+            }
+
+            .p-orbit, #m-orbit{
+                border: 0.1vmin solid lightgray;
+                opacity: 0.5;
+                background: transparent;
+            }
+
+            #belt{
+                height: 97vmin;
+                width: 97vmin;
+                animation: spin 50s infinite linear;
+                margin-top: 50vmin;
+            }
+
+            @keyframes spin{
+                0%{transform: rotate(0deg)}
+                100%{transform: rotate(360deg)}
+            }
+
+            #m-orbit{
+                height: 8vmin;
+                width: 8vmin;
+            }
+
+            .planet, #moon{
+                z-index: 100;
+            }
+
+            #sun{
+                height: 12vmin;
+                width: 12vmin;
+            }
+
+            #moon{
+                height: 1vmin;
+                width: 1vmin;
+                background-color: white;
+            }
+
+            #mercury{
+                height: 2vmin;
+                width: 2vmin;
+            }
+
+            #venus{
+                height: 3vmin;
+                width: 3vmin;
+            }
+
+            #earth{
+                height: 4vmin;
+                width: 4vmin;
+            }
+
+            #mars{
+                height: 3.5vmin;
+                width: 3.5vmin;
+            }
+
+            #jupyter{
+                height: 12vmin;
+                width: 12vmin;
+            }
+
+            #saturn{
+                height: 12vmin;
+                width: 12vmin;
+                border-radius: 0%;
+            }
+
+            #uranus{
+                height: 5vmin;
+                width: 5vmin;
+            }
+
+            #neptune{
+                height: 4vmin;
+                width: 4vmin;
+            }
+        </style>
+    </head>
+
+    <body>
+        <img class="bg" src="starry-night-sky.jpg" alt="">
+        <div class="solarsystem">
+            <img class="object" src="Assets/sun.png" alt="" id="sun">
+            <img class="object planet" src="Assets/mercury.jpg" alt="" id="mercury">
+            <img class="object planet" src="Assets/venus.jpg" alt="" id="venus">
+            <img class="object planet" src="Assets/earth.jpg" alt="" id="earth">
+            <img class="object planet" src="Assets/mars.jpg" alt="" id="mars">
+            <img class="object planet" src="Assets/jupyter.jpg" alt="" id="jupyter">
+            <img class="object planet" src="Assets/saturn.png" alt="" id="saturn">
+            <img class="object planet" src="Assets/uranus.png" alt="" id="uranus">
+            <img class="object planet" src="Assets/neptune.jpg" alt="" id="neptune">
+            <div class="object" id="moon"></div>
+
+            <div class="object p-orbit"></div>
+            <div class="object p-orbit"></div>
+            <div class="object p-orbit"></div>
+            <div class="object p-orbit"></div>
+            <div class="object p-orbit"></div>
+            <div class="object p-orbit"></div>
+            <div class="object p-orbit"></div>
+            <div class="object p-orbit"></div>
+            <div class="object" id="m-orbit"></div>
+
+            <img src="Assets/asteroid.png" class="object" alt="" id="belt">
+        </div>
+
+        <div class="title">
+            <h1 class="animate-character">Our Solar System</h1>
+        </div>
+    
+        <script>
+            const planets = document.querySelectorAll('.planet');
+            // const p_radius = [22, 33, 50, 70, 112, 138, 165, 190].map(function(x) { return x * 1/3; });
+            const p_radius = [22, 33, 50, 70, 112, 138, 165, 190];
+            let p_radians = new Array(8).fill(-1.5708);
+            const p_velocities = [1.607, 1.174, 1, 0.802, 0.434, 0.323, 0.228, 0.182]
+    
+            const moon = document.querySelector('#moon');
+            const m_radius = 8;
+            let m_radians = 0;
+            const m_velocity = 10;
+    
+            const p_orbits = document.querySelectorAll('.p-orbit');
+            const m_orbit = document.querySelector('#m-orbit');
+    
+            p_orbits.forEach((p_orbit, index)=>{
+                p_orbit.style.height = `${p_radius[index]}vmin`;
+                p_orbit.style.width = `${p_radius[index]}vmin`;
+            });
+    
+            setInterval(() => {
+               planets.forEach( (planet, index) => {
+                   planet.style.left =  `${Math.cos(p_radians[index])*p_radius[index]}vmin`;
+                   planet.style.top =  `${Math.sin(p_radians[index])*p_radius[index]}vmin`;
+    
+                   p_radians[index] += p_velocities[index]*0.02;
+               }); 
+    
+               moon.style.left = `${earthX() + (Math.cos(m_radians)*m_radius)}vmin`;
+               moon.style.top = `${earthY() + (Math.sin(m_radians)*m_radius)}vmin`;
+    
+               m_radians += m_velocity*0.02;
+               m_orbit.style.left = `${earthX()}vmin`;
+               m_orbit.style.top = `${earthY()}vmin`;
+            }, 1000/60);
+    
+            function earthX() {
+                return Number(planets[2].style.left.split('vmin')[0]);
+            }
+    
+            function earthY() {
+                return Number(planets[2].style.top.split('vmin')[0]);
+            }
+    
+        </script>
+    
+    </body>
+</html>
